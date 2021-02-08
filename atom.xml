@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-02-07T10:55:22.940Z</updated>
+  <updated>2021-02-08T09:47:00.878Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,55 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Djange学习笔记-02</title>
+    <link href="http://example.com/2021/02/08/Django%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-02/"/>
+    <id>http://example.com/2021/02/08/Django%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-02/</id>
+    <published>2021-02-08T09:17:00.000Z</published>
+    <updated>2021-02-08T09:47:00.878Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Django模板标签"><a href="#Django模板标签" class="headerlink" title="Django模板标签"></a>Django模板标签</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Django模板标签&quot;&gt;&lt;a href=&quot;#Django模板标签&quot; class=&quot;headerlink&quot; title=&quot;Django模板标签&quot;&gt;&lt;/a&gt;Django模板标签&lt;/h2&gt;</summary>
+      
+    
+    
+    
+    <category term="Django" scheme="http://example.com/categories/Django/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Django学习笔记-01</title>
+    <link href="http://example.com/2021/02/08/Django%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/"/>
+    <id>http://example.com/2021/02/08/Django%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/</id>
+    <published>2021-02-08T03:30:00.000Z</published>
+    <updated>2021-02-08T09:39:44.476Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Django-path-函数"><a href="#Django-path-函数" class="headerlink" title="Django path()函数"></a>Django path()函数</h2><p> Path()函数可以接收四个参数，分别是两个必选参数:router、view和两个可选参数:kwargs、name</p><p> path(router, view, kwargs=None, name=None)</p><ol><li>router:字符串,表示URL规则,与之匹配的URL会执行对应的第二个参数view.</li><li>view:用于执行与正则表达式匹配的URL请求.</li><li>kwargs:视图使用的字典类型的参数.</li><li>name:用来反向获取URL.</li> </li></ol><h2 id="Django-模板"><a href="#Django-模板" class="headerlink" title="Django 模板"></a>Django 模板</h2><ol><li>引用模板文件,修改settings.py;修改TEMPLATES中的DIRS为[os.path.join(BASE_DIR,’templates’)]<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&#x27;BACKEND&#x27;</span>: <span class="string">&#x27;django.template.backends.django.DjangoTemplates&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;DIRS&#x27;</span>: [os.path.join(BASE_DIR, <span class="string">&#x27;templates&#x27;</span>)],</span><br><span class="line">        <span class="string">&#x27;APP_DIRS&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">&#x27;OPTIONS&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;context_processors&#x27;</span>: [</span><br><span class="line">                <span class="string">&#x27;django.template.context_processors.debug&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;django.template.context_processors.request&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;django.contrib.auth.context_processors.auth&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;django.contrib.messages.context_processors.messages&#x27;</span>,</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li><li>修改views.py,增加一个新对象,用于向模板提交数据:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runoob</span>(<span class="params">request</span>):</span></span><br><span class="line">   context = &#123;&#125;</span><br><span class="line">    context[<span class="string">&#x27;hello&#x27;</span>] = <span class="string">&quot;Hello World!&quot;</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;runoob.html&#x27;</span>, context)</span><br></pre></td></tr></table></figure></li><li>修改urls.py代码<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line">   </span><br><span class="line">urlpatterns = [</span><br><span class="line">path(<span class="string">&#x27;runoob/&#x27;</span>, views.runoob)</span><br><span class="line">   ]</span><br></pre></td></tr></table></figure><h2 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h2>使用<strong>render</strong>来替代<strong>HttpRequest; render</strong>使用一个字典<strong>context</strong>作为参数, <strong>context</strong>字典中元素的键值<strong>hello</strong>对应了模板HTML文件中的变量<strong>hello</strong>.</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Django-path-函数&quot;&gt;&lt;a href=&quot;#Django-path-函数&quot; class=&quot;headerlink&quot; title=&quot;Django path()函数&quot;&gt;&lt;/a&gt;Django path()函数&lt;/h2&gt;&lt;p&gt; Path()函数可以接收四个参数，分别</summary>
+      
+    
+    
+    
+    <category term="Django" scheme="http://example.com/categories/Django/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="http://example.com/2021/02/06/hello-world/"/>
     <id>http://example.com/2021/02/06/hello-world/</id>
     <published>2021-02-05T16:22:00.000Z</published>
-    <updated>2021-02-07T10:55:22.940Z</updated>
+    <updated>2021-02-08T09:37:35.007Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
     
